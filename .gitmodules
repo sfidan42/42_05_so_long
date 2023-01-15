@@ -1,0 +1,6 @@
+[submodule "include/libft"]
+	path = include/libft
+	url = git@github.com:Sadettin-38/libft.git
+[submodule "include/ft_printf"]
+	path = include/ft_printf
+	url = git@github.com:Sadettin-38/ft_printf.git

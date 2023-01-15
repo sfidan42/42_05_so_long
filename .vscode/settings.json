@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "mlx.h": "c",
+        "so_long.h": "c",
+        "unistd.h": "c",
+        "stdlib.h": "c",
+        "random": "c",
+        "ft_printf.h": "c",
+        "get_next_line.h": "c",
+        "libft.h": "c",
+        "fcntl.h": "c",
+        "functional": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

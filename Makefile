@@ -1,7 +1,7 @@
-SRCS		=	utils/map.c utils/window.c utils/player.c \
-				utils/game.c utils/panel.c utils/map_errors.c \
-				utils/string.c utils/exit.c utils/player_utils.c
+SRCS		=	$(shell ls utils/*)
+BSRCS		=	$(shell ls bonus_utils/*)
 OBJS		=	$(SRCS:.c=.o)
+BOBJS		=	$(BSRCS:.c=.o)
 NAME 		=	so_long.a
 NAME2		=	include/ft_printf/libftprintf.a
 NAME3		=	include/libft/libft.a
@@ -23,11 +23,9 @@ $(NAME3):
 so_long: so_long.c
 	gcc $(CFLAGS) so_long.c $(NAME) $(NAME2) $(NAME3) $(MLX_FLAGS) -o so_long
 
-map2: all
-	./so_long data/maps/map2.ber 
-
 clean:
 	make -C utils clean
+	make -C bonus_utils clean
 	make -C include/ft_printf clean
 	make -C include/libft clean
 
@@ -36,4 +34,10 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all compile clean fclean re
+bonus_archive: $(NAME2) $(NAME3) $(NAME)
+	make -C bonus_utils
+	ar rcs $(NAME) $(BOBJS)
+
+bonus: bonus_archive so_long
+
+.PHONY: all compile clean fclean re bonus bonus_archive

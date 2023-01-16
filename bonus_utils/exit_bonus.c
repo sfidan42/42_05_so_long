@@ -1,4 +1,4 @@
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 void	ft_game_won(t_pdmh *pdmh)
 {

@@ -9,7 +9,8 @@
         "get_next_line.h": "c",
         "libft.h": "c",
         "fcntl.h": "c",
-        "functional": "c"
+        "functional": "c",
+        "so_long_bonus.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -25,7 +25,7 @@ so_long: so_long.c
 
 clean:
 	make -C utils clean
-	make -C bonus_utils clean
+	make -C utils_bonus clean
 	make -C include/ft_printf clean
 	make -C include/libft clean
 
@@ -34,10 +34,16 @@ fclean: clean
 
 re: fclean all
 
-bonus_archive: $(NAME2) $(NAME3) $(NAME)
-	make -C bonus_utils
+bonus: $(NAME2) $(NAME3) bonus_archive so_long_bonus
+
+bonus_archive: $(BSRCS)
+	make -C utils_bonus
 	ar rcs $(NAME) $(BOBJS)
 
-bonus: bonus_archive so_long
+so_long_bonus: so_long_bonus.c
+	gcc $(CFLAGS) so_long_bonus.c $(NAME) $(NAME2) $(NAME3) $(MLX_FLAGS) -o so_long_bonus
+	mv so_long_bonus so_long
 
-.PHONY: all compile clean fclean re bonus bonus_archive
+re_bonus: fclean bonus
+
+.PHONY: all compile clean fclean re bonus_archive bonus re_bonus

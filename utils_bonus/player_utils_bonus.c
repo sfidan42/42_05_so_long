@@ -40,14 +40,6 @@ void	ft_special_ability(t_pdmh *pdmh)
 		ft_kill_enemy(pdmh, x, y - 1);
 }
 
-typedef struct s_step_var
-{
-	char	next;
-	int		arrow;
-	int		wasd;
-	int		key;
-}			t_step_var;
-
 void	ft_decisions(t_pdmh *pdmh, t_step_var v)
 {
 	if (v.arrow && v.next == 'x')

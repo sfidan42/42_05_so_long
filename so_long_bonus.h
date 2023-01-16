@@ -75,6 +75,7 @@ void	ft_put_img(t_ptr p, char *file_name, int x, int y);
 
 void	ft_set_map(t_map *m, char *map_name);
 void	ft_put_map(t_pdmh *pdmh);
+void	ft_free_map(char **map);
 
 void	ft_put_panel(t_pdmh *pdmh);
 void	ft_update_panel(t_pdmh *pdmh);

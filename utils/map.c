@@ -1,14 +1,5 @@
 #include "../so_long.h"
 
-void	ft_put_img(t_ptr p, char *file_name, int x, int y)
-{
-	int		img_w;
-	int		img_h;
-
-	p.img_ptr = mlx_xpm_file_to_image(p.mlx_ptr, file_name, &img_w, &img_h);
-	mlx_put_image_to_window(p.mlx_ptr, p.win_ptr, p.img_ptr, x, y);
-}
-
 char	*ft_read_map(char *map_name)
 {
 	t_read_map_elems	r;
@@ -86,4 +77,14 @@ void	ft_put_map(t_pdmh *pdmh)
 		}
 		j++;
 	}
+}
+
+void	ft_free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
 }

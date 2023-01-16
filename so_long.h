@@ -69,6 +69,7 @@ void	ft_put_img(t_ptr p, char *file_name, int x, int y);
 
 void	ft_set_map(t_map *m, char *map_name);
 void	ft_put_map(t_pdmh *pdmh);
+void	ft_free_map(char **map);
 
 void	ft_open_window(t_pdmh *pdmh);
 void	ft_play_game(t_pdmh *pdmh);

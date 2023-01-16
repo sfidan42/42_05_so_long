@@ -26,6 +26,7 @@ int	main(int c, char **v)
 	if (c != 2)
 		return (1);
 	ft_set_map(pdmh.m, v[1]);
+	pdmh.m->map = ft_check_map(pdmh.m->map);
 	ft_set_data(pdmh.d);
 	ft_open_window(&pdmh);
 	ft_play_game(&pdmh);

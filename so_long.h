@@ -67,7 +67,12 @@ typedef struct s_pdmh
 
 void	ft_put_img(t_ptr p, char *file_name, int x, int y);
 
+int		ft_map_misshapen(char **map);
+int		ft_map_uninclosed(char **map);
+int		ft_map_objects(char **map);
+
 void	ft_set_map(t_map *m, char *map_name);
+char	**ft_check_map(char **map);
 void	ft_put_map(t_pdmh *pdmh);
 void	ft_free_map(char **map);
 

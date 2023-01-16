@@ -75,8 +75,6 @@ void	ft_take_step(t_pdmh *pdmh, int k)
 		pdmh->h->loc_y = pdmh->h->old_y;
 		pdmh->h->loc_x = pdmh->h->old_x;
 	}
-	else
-		ft_printf("%d\n", pdmh->h->steps++);
 }
 
 void	ft_playercontrol(t_pdmh *pdmh, int key)
@@ -88,6 +86,10 @@ void	ft_playercontrol(t_pdmh *pdmh, int key)
 	ft_put_img(pdmh->p, pdmh->h->look,
 		pdmh->h->loc_y * 64, pdmh->h->loc_x * 64 + 32);
 	ft_update_panel(pdmh);
-	pdmh->h->old_y = pdmh->h->loc_y;
-	pdmh->h->old_x = pdmh->h->loc_x;
+	if (pdmh->h->old_y != pdmh->h->loc_y || pdmh->h->old_x != pdmh->h->loc_x)
+	{
+		ft_printf("%d\n", pdmh->h->steps++);
+		pdmh->h->old_y = pdmh->h->loc_y;
+		pdmh->h->old_x = pdmh->h->loc_x;
+	}
 }

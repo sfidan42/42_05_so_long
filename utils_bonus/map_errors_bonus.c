@@ -1,6 +1,6 @@
 #include "../so_long_bonus.h"
 
-void    ft_check_map(char **map)
+char	**ft_check_map(char **map)
 {
 	if (!**map)
 		ft_printf("Error! The map is empty!\n");

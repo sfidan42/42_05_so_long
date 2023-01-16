@@ -33,15 +33,12 @@ void	ft_take_step(t_pdmh *pdmh, int k)
 	pdmh->h->loc_y -= (k == 'a') - (k == 'd');
 	v.next = pdmh->m->map[pdmh->h->loc_x][pdmh->h->loc_y];
 	v.wasd = (k == 'w') + (k == 'a') + (k == 's') + (k == 'd');
-	v.arrow = (65361 <= k && k <= 65364);
 	ft_decisions(pdmh, v);
-	if (v.next == '1' || v.arrow || v.next == 'e')
+	if (v.next == '1' || v.next == 'e')
 	{
 		pdmh->h->loc_y = pdmh->h->old_y;
 		pdmh->h->loc_x = pdmh->h->old_x;
 	}
-	else
-		ft_printf("%d\n", pdmh->h->steps++);
 }
 
 void	ft_playercontrol(t_pdmh *pdmh, int key)
@@ -52,6 +49,10 @@ void	ft_playercontrol(t_pdmh *pdmh, int key)
 	ft_take_step(pdmh, key);
 	ft_put_img(pdmh->p, pdmh->h->look,
 		pdmh->h->loc_y * 64, pdmh->h->loc_x * 64);
-	pdmh->h->old_y = pdmh->h->loc_y;
-	pdmh->h->old_x = pdmh->h->loc_x;
+	if (pdmh->h->old_y != pdmh->h->loc_y || pdmh->h->old_x != pdmh->h->loc_x)
+	{
+		ft_printf("%d\n", pdmh->h->steps++);
+		pdmh->h->old_y = pdmh->h->loc_y;
+		pdmh->h->old_x = pdmh->h->loc_x;
+	}
 }

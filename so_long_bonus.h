@@ -99,4 +99,22 @@ void	ft_put_string(t_string s, t_ptr p, char *text, int nbr);
 void	ft_game_lost(t_pdmh *pdmh);
 void	ft_game_won(t_pdmh *pdmh);
 
+
+typedef struct s_step_var
+{
+	char	next;
+	int		arrow;
+	int		wasd;
+	int		key;
+}			t_step_var;
+
+typedef struct s_read_map_elems
+{
+	char	*map;
+	char	*tmp;
+	char	*buf;
+	int		fd;
+	int		b;
+}			t_read_map_elems;
+
 #endif

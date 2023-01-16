@@ -20,7 +20,6 @@ void	ft_set_player(t_pdmh *pdmh)
 	int	j;
 
 	pdmh->h->steps = 0;
-	pdmh->h->killed = 0;
 	pdmh->h->collected = 0;
 	pdmh->h->look = pdmh->d->middle;
 	i = 0;
@@ -41,10 +40,4 @@ void	ft_set_player(t_pdmh *pdmh)
 		}
 		i++;
 	}
-}
-
-void	ft_kill_enemy(t_pdmh *pdmh, int x, int y)
-{
-	pdmh->m->map[x][y] = '0';
-	ft_put_img(pdmh->p, pdmh->d->enemy_tomb, y * 64, x * 64 + 32);
 }

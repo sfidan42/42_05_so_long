@@ -9,15 +9,6 @@ void	ft_put_img(t_ptr p, char *file_name, int x, int y)
 	mlx_put_image_to_window(p.mlx_ptr, p.win_ptr, p.img_ptr, x, y);
 }
 
-typedef struct s_read_map_elems
-{
-	char	*map;
-	char	*tmp;
-	char	*buf;
-	int		fd;
-	int		b;
-}			t_read_map_elems;
-
 char	*ft_read_map(char *map_name)
 {
 	t_read_map_elems	r;
@@ -61,36 +52,26 @@ void	ft_set_map(t_map *m, char *map_name)
 	m->size_y *= 64;
 }
 
-typedef struct s_xyc
+void	ft_put_item(t_pdmh pdmh, int x, int y, int c)
 {
-	int		x;
-	int		y;
-	char	c;
-}			t_xyc;
-
-void	ft_put_item(t_pdmh pdmh, t_xyc k)
-{
-	if (k.c == '0')
-		ft_put_img(pdmh.p, pdmh.d->floor, k.x, k.y);
-	else if (k.c == '1')
-		ft_put_img(pdmh.p, pdmh.d->wall, k.x, k.y);
-	else if (ft_tolower(k.c) == 'x')
-		ft_put_img(pdmh.p, pdmh.d->enemy, k.x, k.y);
-	else if (ft_tolower(k.c) == 'c')
-		ft_put_img(pdmh.p, pdmh.d->collect, k.x, k.y);
-	else if (ft_tolower(k.c) == 'e')
-		ft_put_img(pdmh.p, pdmh.d->exit, k.x, k.y);
-	else if (ft_tolower(k.c) == 'p')
-		ft_put_img(pdmh.p, pdmh.d->middle, k.x, k.y);
-	else if (ft_tolower(k.c) == ' ')
-		ft_put_img(pdmh.p, pdmh.d->empty, k.x, k.y);
+	if (c == '0')
+		ft_put_img(pdmh.p, pdmh.d->floor, x, y);
+	else if (c == '1')
+		ft_put_img(pdmh.p, pdmh.d->wall, x, y);
+	else if (ft_tolower(c) == 'c')
+		ft_put_img(pdmh.p, pdmh.d->collect, x, y);
+	else if (ft_tolower(c) == 'e')
+		ft_put_img(pdmh.p, pdmh.d->exit, x, y);
+	else if (ft_tolower(c) == 'p')
+		ft_put_img(pdmh.p, pdmh.d->middle, x, y);
+	else if (ft_tolower(c) == ' ')
+		ft_put_img(pdmh.p, pdmh.d->empty, x, y);
 }
 
 void	ft_put_map(t_pdmh *pdmh)
 {
 	int		i;
 	int		j;
-	t_xyc	k;
 
 	j = 0;
 	while (pdmh->m->map[j])
@@ -98,12 +79,7 @@ void	ft_put_map(t_pdmh *pdmh)
 		i = 0;
 		while (pdmh->m->map[j][i])
 		{
-			k.c = pdmh->m->map[j][i];
-			k.x = i * 64;
-			k.y = j * 64 + 32;
-			ft_put_item(*pdmh, k);
-			if (pdmh->m->map[j][i] == 'x')
-				pdmh->m->enemies++;
+			ft_put_item(*pdmh, i * 64, j * 64, pdmh->m->map[j][i]);
 			if (pdmh->m->map[j][i] == 'c')
 				pdmh->m->items++;
 			i++;

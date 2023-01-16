@@ -4,7 +4,6 @@ void	ft_set_data(t_data *d)
 {
 	d->wall = "data/imgs/wall.xpm";
 	d->floor = "data/imgs/floor.xpm";
-	d->enemy = "data/imgs/enemy.xpm";
 	d->collect = "data/imgs/collect.xpm";
 	d->exit = "data/imgs/exit.xpm";
 	d->empty = "data/imgs/enemy.xpm";
@@ -13,11 +12,8 @@ void	ft_set_data(t_data *d)
 	d->left = "data/imgs/left.xpm";
 	d->up = "data/imgs/up.xpm";
 	d->down = "data/imgs/down.xpm";
-	d->multi = "data/imgs/multi.xpm";
 	d->lost = "data/imgs/lost_scene.xpm";
 	d->rose = "data/imgs/rose_scene.xpm";
-	d->pnl_bg = "data/imgs/panel_background.xpm";
-	d->enemy_tomb = "data/imgs/enemy_dead.xpm";
 }
 
 int	main(int c, char **v)

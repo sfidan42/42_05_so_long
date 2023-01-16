@@ -27,7 +27,6 @@ int	main(int c, char **v)
 		return (1);
 	ft_set_map(pdmh.m, v[1]);
 	ft_set_data(pdmh.d);
-	pdmh.m->size_y += 32;
 	ft_open_window(&pdmh);
 	ft_play_game(&pdmh);
 	usleep(250000);

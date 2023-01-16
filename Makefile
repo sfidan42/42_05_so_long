@@ -1,5 +1,5 @@
 SRCS		=	$(shell ls utils/*)
-BSRCS		=	$(shell ls bonus_utils/*)
+BSRCS		=	$(shell ls utils_bonus/*)
 OBJS		=	$(SRCS:.c=.o)
 BOBJS		=	$(BSRCS:.c=.o)
 NAME 		=	so_long.a

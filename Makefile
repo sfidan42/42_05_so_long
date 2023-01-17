@@ -1,5 +1,5 @@
-SRCS		=	$(shell ls -t utils/*)
-BSRCS		=	$(shell ls -t utils_bonus/*)
+SRCS		=	$(shell ls -t utils/*.c)
+BSRCS		=	$(shell ls -t utils_bonus/*.c)
 OBJS		=	$(SRCS:.c=.o)
 BOBJS		=	$(BSRCS:.c=.o)
 NAME 		=	so_long.a
@@ -17,15 +17,15 @@ $(NAME): $(SRCS)
 	make -C utils
 	ar rcs $(NAME) $(OBJS)
 
+$(BNAME): $(BSRCS)
+	make -C utils_bonus
+	ar rcs $(BNAME) $(BOBJS)
+
 $(NAME2):
 	@make -C include/ft_printf
 
 $(NAME3):
 	@make -C include/libft
-
-$(BNAME): $(BSRCS)
-	make -C utils_bonus
-	ar rcs $(BNAME) $(BOBJS)
 
 so_long: so_long.c
 	@gcc $(CFLAGS) so_long.c $(NAME) $(NAME2) $(NAME3) $(MLX_FLAGS) -o so_long
@@ -45,6 +45,5 @@ fclean: clean
 re: fclean all
 
 re_bonus: fclean bonus
-
 
 .PHONY: all bonus clean fclean re re_bonus

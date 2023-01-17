@@ -70,11 +70,14 @@ void	ft_put_img(t_ptr p, char *file_name, int x, int y);
 int		ft_map_misshapen(char **map);
 int		ft_map_uninclosed(char **map);
 int		ft_map_objects(char **map);
+void	ft_check_empty_line(char *map);
+
+void	ft_free_map(char **map);
+void	ft_put_item(t_pdmh pdmh, int x, int y, int c);
 
 void	ft_set_map(t_map *m, char *map_name);
 char	**ft_check_map(t_map map);
 void	ft_put_map(t_pdmh *pdmh);
-void	ft_free_map(char **map);
 
 void	ft_open_window(t_pdmh *pdmh);
 void	ft_play_game(t_pdmh *pdmh);

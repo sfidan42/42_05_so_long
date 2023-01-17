@@ -31,11 +31,16 @@ char	*ft_read_map(char *map_name)
 
 void	ft_set_map(t_map *m, char *map_name)
 {
-	char	*xx;
+	char	*map;
+	int		i;
 
-	xx = ft_read_map(map_name);
-	m->map = ft_split(xx, '\n');
-	free(xx);
+	map = ft_read_map(map_name);
+	i = ft_strlen(map) - 1;
+	while (map[i - 1] == '\n')
+		map[i--] = 0;
+	ft_check_empty_line(map);
+	m->map = ft_split(map, '\n');
+	free(map);
 	m->size_x = 0;
 	m->size_y = 0;
 	if (*m->map)
@@ -44,22 +49,6 @@ void	ft_set_map(t_map *m, char *map_name)
 		m->size_y++;
 	m->size_x *= 64;
 	m->size_y *= 64;
-}
-
-void	ft_put_item(t_pdmh pdmh, int x, int y, int c)
-{
-	if (c == '0')
-		ft_put_img(pdmh.p, pdmh.d->floor, x, y);
-	else if (c == '1')
-		ft_put_img(pdmh.p, pdmh.d->wall, x, y);
-	else if (ft_tolower(c) == 'c')
-		ft_put_img(pdmh.p, pdmh.d->collect, x, y);
-	else if (ft_tolower(c) == 'e')
-		ft_put_img(pdmh.p, pdmh.d->exit, x, y);
-	else if (ft_tolower(c) == 'p')
-		ft_put_img(pdmh.p, pdmh.d->middle, x, y);
-	else if (ft_tolower(c) == ' ')
-		ft_put_img(pdmh.p, pdmh.d->empty, x, y);
 }
 
 void	ft_put_map(t_pdmh *pdmh)
@@ -80,14 +69,4 @@ void	ft_put_map(t_pdmh *pdmh)
 		}
 		j++;
 	}
-}
-
-void	ft_free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
 }

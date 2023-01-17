@@ -73,7 +73,7 @@ typedef struct s_pdmh
 
 void	ft_put_img(t_ptr p, char *file_name, int x, int y);
 
-int		ft_map_misshapen(char **map);
+int		ft_map_misshapen(t_map m);
 int		ft_map_uninclosed(char **map);
 int		ft_map_objects(char **map);
 

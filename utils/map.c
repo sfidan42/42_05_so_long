@@ -5,6 +5,8 @@ char	*ft_read_map(char *map_name)
 	t_read_map_elems	r;
 
 	r.fd = open(map_name, O_RDONLY, 0777);
+	if (r.fd == -1)
+		exit(0);
 	r.buf = malloc(BUFFER_SIZE + 1);
 	if (!r.buf)
 		return (0);
@@ -24,7 +26,6 @@ char	*ft_read_map(char *map_name)
 		r.map = r.tmp;
 	}
 	free(r.buf);
-	close(r.fd);
 	return (r.map);
 }
 
@@ -35,8 +36,10 @@ void	ft_set_map(t_map *m, char *map_name)
 	xx = ft_read_map(map_name);
 	m->map = ft_split(xx, '\n');
 	free(xx);
-	m->size_x = ft_strlen(*m->map);
+	m->size_x = 0;
 	m->size_y = 0;
+	if (*m->map)
+		m->size_x = ft_strlen(*m->map);
 	while (m->map[m->size_y])
 		m->size_y++;
 	m->size_x *= 64;

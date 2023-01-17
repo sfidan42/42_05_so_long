@@ -1,15 +1,15 @@
 #include "../so_long.h"
 
-char	**ft_check_map(char **map)
+char	**ft_check_map(t_map m)
 {
-	if (!**map)
+	if (!m.size_x)
 		ft_printf("Error! The map is empty!\n");
-	else if (ft_map_misshapen(map))
+	else if (ft_map_misshapen(m.map))
 		ft_printf("Error! The map is not rectangular!\n");
-	else if (ft_map_uninclosed(map))
+	else if (ft_map_uninclosed(m.map))
 		ft_printf("Error! The map is not surrounded by walls!\n");
-	else if (ft_map_objects(map))
-		return (map);
-	ft_free_map(map);
+	else if (ft_map_objects(m.map))
+		return (m.map);
+	ft_free_map(m.map);
 	exit(0);
 }

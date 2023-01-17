@@ -39,21 +39,15 @@ int	ft_map_obj_conditions(int c, int p, int e)
 {
 	if (c == 0)
 		ft_printf("Error! There is no collectable (rose)\n");
-	else
-		return (1);
 	if (p == 0)
 		ft_printf("Error! There is no player (warrior)!\n");
 	else if (p > 1)
 		ft_printf("Error! There are multiple players (warriors)!\n");
-	else
-		return (1);
 	if (e == 0)
 		ft_printf("Error! There is no exit (queen)!\n");
 	else if (e > 1)
 		ft_printf("Error! There can't be multiple exits (queens)!\n");
-	else
-		return (1);
-	return (0);
+	return (!(c == 0 || p == 0 || p > 1 || e == 0 || e > 1));
 }
 
 int	ft_map_objects(char **map)

@@ -1,19 +1,12 @@
 #include "../so_long_bonus.h"
 
-void	ft_put_img(t_ptr p, char *file_name, int x, int y)
-{
-	int		img_w;
-	int		img_h;
-
-	p.img_ptr = mlx_xpm_file_to_image(p.mlx_ptr, file_name, &img_w, &img_h);
-	mlx_put_image_to_window(p.mlx_ptr, p.win_ptr, p.img_ptr, x, y);
-}
-
 char	*ft_read_map(char *map_name)
 {
 	t_read_map_elems	r;
 
 	r.fd = open(map_name, O_RDONLY, 0777);
+	if (r.fd == -1)
+		exit(0);
 	r.buf = malloc(BUFFER_SIZE + 1);
 	if (!r.buf)
 		return (0);
@@ -33,42 +26,29 @@ char	*ft_read_map(char *map_name)
 		r.map = r.tmp;
 	}
 	free(r.buf);
-	close(r.fd);
 	return (r.map);
 }
 
 void	ft_set_map(t_map *m, char *map_name)
 {
-	char	*xx;
+	char	*map;
+	int		i;
 
-	xx = ft_read_map(map_name);
-	m->map = ft_split(xx, '\n');
-	free(xx);
-	m->size_x = ft_strlen(*m->map);
+	map = ft_read_map(map_name);
+	i = ft_strlen(map) - 1;
+	while (map[i - 1] == '\n')
+		map[i--] = 0;
+	ft_check_empty_line(map);
+	m->map = ft_split(map, '\n');
+	free(map);
+	m->size_x = 0;
 	m->size_y = 0;
+	if (*m->map)
+		m->size_x = ft_strlen(*m->map);
 	while (m->map[m->size_y])
 		m->size_y++;
 	m->size_x *= 64;
 	m->size_y *= 64;
-}
-
-
-void	ft_put_item(t_pdmh pdmh, int x, int y, int c)
-{
-	if (c == '0')
-		ft_put_img(pdmh.p, pdmh.d->floor, x, y);
-	else if (c == '1')
-		ft_put_img(pdmh.p, pdmh.d->wall, x, y);
-	else if (ft_tolower(c) == 'x')
-		ft_put_img(pdmh.p, pdmh.d->enemy, x, y);
-	else if (ft_tolower(c) == 'c')
-		ft_put_img(pdmh.p, pdmh.d->collect, x, y);
-	else if (ft_tolower(c) == 'e')
-		ft_put_img(pdmh.p, pdmh.d->exit, x, y);
-	else if (ft_tolower(c) == 'p')
-		ft_put_img(pdmh.p, pdmh.d->middle, x, y);
-	else if (ft_tolower(c) == ' ')
-		ft_put_img(pdmh.p, pdmh.d->empty, x, y);
 }
 
 void	ft_put_map(t_pdmh *pdmh)
@@ -83,22 +63,12 @@ void	ft_put_map(t_pdmh *pdmh)
 		while (pdmh->m->map[j][i])
 		{
 			ft_put_item(*pdmh, i * 64, j * 64 + 32, pdmh->m->map[j][i]);
-			if (pdmh->m->map[j][i] == 'x')
-				pdmh->m->enemies++;
 			if (pdmh->m->map[j][i] == 'c')
 				pdmh->m->items++;
+			if (pdmh->m->map[j][i] == 'x')
+				pdmh->m->enemies++;
 			i++;
 		}
 		j++;
 	}
-}
-
-void	ft_free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
 }

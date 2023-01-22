@@ -18,6 +18,6 @@ void	ft_open_window(t_pdmh *pdmh)
 
 void	ft_close_window(t_pdmh pdmh)
 {
-	ft_free_map(pdmh.m->map);
+	ft_free_all(pdmh);
 	mlx_destroy_window(pdmh.p.mlx_ptr, pdmh.p.win_ptr);
 }

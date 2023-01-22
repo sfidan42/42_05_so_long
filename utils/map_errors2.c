@@ -59,7 +59,6 @@ int	ft_map_objects(char **map)
 	int	e;
 
 	i = 0;
-	j = 0;
 	p = 0;
 	c = 0;
 	e = 0;
@@ -82,5 +81,5 @@ void	ft_check_empty_line(char *map)
 {
 	while (*++map)
 		if (*map == '\n' && *(map - 1) == '\n')
-				ft_printf("Error! Empty line in the map!\n");
+			ft_printf("Error! Empty line in the map!\n");
 }

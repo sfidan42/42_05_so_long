@@ -1,5 +1,10 @@
 #include "../so_long.h"
 
+int	ft_can_game_finish(char **map)
+{
+	
+}
+
 char	**ft_check_map(t_map m)
 {
 	if (!m.size_x)

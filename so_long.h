@@ -91,6 +91,7 @@ void	ft_playercontrol_look(t_pdmh pdmh, int k);
 void	ft_playercontrol(t_pdmh *pdmh, int key);
 
 void	ft_game_won(t_pdmh *pdmh);
+void	ft_free_all(t_pdmh pdmh);
 
 typedef struct s_step_var
 {

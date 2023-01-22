@@ -5,11 +5,11 @@ int	ft_collectibles(t_map m, int i, int j)
 	int	item;
 
 	if (i < 0 || j < 0 || i > m.size_x || j > m.size_y)
-		return ;
+		return (0);
 	if (m.map[i][j] == '1')
-		return ;
+		return (0);
 	if (m.map[i][j] == '2')
-		return ;
+		return (0);
 	item = m.map[i][j] == 'c';
 	m.map[i][j] = '2';
 	if (item)
@@ -23,16 +23,16 @@ int	ft_collectibles(t_map m, int i, int j)
 
 char	**ft_check_map(t_pdmh pdmh)
 {
-	if (!pdmh.m.size_x)
+	if (!pdmh.m->size_x)
 		ft_printf("Error! The map is empty!\n");
-	if (ft_collectibles(pdmh.m, pdmh.h.loc_x, pdmh.h.loc_y) - pdmh.m.items)
+	else if (ft_collectibles(*pdmh.m, pdmh.h->loc_x, pdmh.h->loc_y) - pdmh.m->items)
 		ft_printf("Error! There are item(s) cannot be collected!\n");
-	if (ft_map_misshapen(m.map))
+	else if (ft_map_misshapen(pdmh.m->map))
 		ft_printf("Error! The map is not rectangular!\n");
-	if (ft_map_uninclosed(m.map))
+	else if (ft_map_uninclosed(pdmh.m->map))
 		ft_printf("Error! The map is not surrounded by walls!\n");
-	if (ft_map_objects(m.map))
-		return (m.map);
-	ft_free_map(m.map);
+	else if (ft_map_objects(pdmh.m->map))
+		return (pdmh.m->map);
+	ft_free_map(pdmh.m->map);
 	exit(0);
 }

@@ -82,7 +82,7 @@ void	ft_free_map(char **map);
 void	ft_put_item(t_pdmh pdmh, int x, int y, int c);
 
 void	ft_set_map(t_map *m, char *map_name);
-char	**ft_check_map(t_map map);
+char	**ft_check_map(t_pdmh pdmh);
 void	ft_put_map(t_pdmh *pdmh);
 
 void	ft_put_panel(t_pdmh *pdmh);
@@ -107,7 +107,6 @@ void	ft_put_string(t_string s, t_ptr p, char *text, int nbr);
 
 void	ft_game_lost(t_pdmh *pdmh);
 void	ft_game_won(t_pdmh *pdmh);
-
 
 typedef struct s_step_var
 {

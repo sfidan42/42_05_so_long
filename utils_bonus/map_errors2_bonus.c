@@ -82,5 +82,5 @@ void	ft_check_empty_line(char *map)
 {
 	while (*++map)
 		if (*map == '\n' && *(map - 1) == '\n')
-				ft_printf("Error! Empty line in the map!\n");
+			ft_printf("Error! Empty line in the map!\n");
 }

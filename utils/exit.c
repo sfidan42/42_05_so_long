@@ -10,6 +10,7 @@ void	ft_game_won(t_pdmh *pdmh)
 	ft_close_window(*pdmh);
 	exit(0);
 }
+
 void	ft_free_map(char **map)
 {
 	int	i;

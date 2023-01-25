@@ -11,16 +11,6 @@ void	ft_game_won(t_pdmh *pdmh)
 	exit(0);
 }
 
-void	ft_free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
-}
-
 void	ft_free_all(t_pdmh pdmh)
 {
 	ft_free_map(pdmh.m->map);

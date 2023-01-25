@@ -70,3 +70,28 @@ void	ft_put_map(t_pdmh *pdmh)
 		j++;
 	}
 }
+
+char	**ft_copy_map(t_map m)
+{
+	char	**map;
+	int		i;
+
+	map = malloc(sizeof(char *) * m.size_x);
+	i = 0;
+	while (i < m.size_x)
+	{
+		map[i] = ft_strdup(m.map[i]);
+		i++;
+	}
+	return (map);
+}
+
+void	ft_free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
+}

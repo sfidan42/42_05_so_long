@@ -56,18 +56,18 @@ void	ft_put_map(t_pdmh *pdmh)
 	int		i;
 	int		j;
 
-	j = 0;
-	while (pdmh->m->map[j])
+	i = 0;
+	while (pdmh->m->map[i])
 	{
-		i = 0;
-		while (pdmh->m->map[j][i])
+		j = 0;
+		while (pdmh->m->map[i][j])
 		{
-			ft_put_item(*pdmh, i * 64, j * 64, pdmh->m->map[j][i]);
-			if (pdmh->m->map[j][i] == 'c')
+			ft_put_item(*pdmh, j * 64, i * 64, pdmh->m->map[i][j]);
+			if (pdmh->m->map[i][j] == 'c')
 				pdmh->m->items++;
-			i++;
+			j++;
 		}
-		j++;
+		i++;
 	}
 }
 
@@ -76,9 +76,9 @@ char	**ft_copy_map(t_map m)
 	char	**map;
 	int		i;
 
-	map = malloc(sizeof(char *) * m.size_x);
+	map = malloc(sizeof(char *) * m.size_y);
 	i = 0;
-	while (i < m.size_x)
+	while (m.map[i])
 	{
 		map[i] = ft_strdup(m.map[i]);
 		i++;

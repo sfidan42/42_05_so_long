@@ -77,8 +77,8 @@ void	ft_put_item(t_pdmh pdmh, int x, int y, int c);
 void	ft_set_map(t_map *m, char *map_name);
 char	**ft_check_map(t_pdmh pdmh);
 void	ft_check_path(t_pdmh pdmh);
-void	ft_put_map(t_pdmh *pdmh);
 
+void	ft_put_map(t_pdmh *pdmh);
 char	**ft_copy_map(t_map m);
 void	ft_free_map(char **map);
 

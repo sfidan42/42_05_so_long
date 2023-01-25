@@ -31,14 +31,13 @@ int	main(int c, char **v)
 		return (1);
 	ft_set_map(pdmh.m, v[1]);
 	pdmh.m->map = ft_check_map(pdmh);
+	ft_check_path(pdmh);
 	ft_set_data(pdmh.d);
 	pdmh.m->size_y += 32;
 	ft_open_window(&pdmh);
 	ft_play_game(&pdmh);
 	usleep(250000);
 	ft_close_window(pdmh);
-	free(pdmh.d);
-	free(pdmh.m);
-	free(pdmh.h);
+	
 	return (0);
 }

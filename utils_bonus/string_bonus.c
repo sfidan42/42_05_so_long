@@ -1,5 +1,4 @@
 #include "../so_long_bonus.h"
-#include <stdarg.h>
 
 void	ft_init_string(t_string *s, int x, int y, int color)
 {

@@ -2,9 +2,9 @@
 
 int	key_hook(int keycode, t_pdmh *pdmh)
 {
-	ft_playercontrol(pdmh, keycode);
 	if (keycode == 'q' || keycode == 65307)
 		mlx_loop_end(pdmh->p.mlx_ptr);
+	ft_playercontrol(pdmh, keycode);
 	return (0);
 }
 

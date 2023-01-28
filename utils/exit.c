@@ -10,11 +10,3 @@ void	ft_game_won(t_pdmh *pdmh)
 	ft_close_window(*pdmh);
 	exit(0);
 }
-
-void	ft_free_all(t_pdmh pdmh)
-{
-	ft_free_map(pdmh.m->map);
-	free(pdmh.d);
-	free(pdmh.m);
-	free(pdmh.h);
-}

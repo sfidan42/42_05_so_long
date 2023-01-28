@@ -18,11 +18,9 @@ void	ft_open_window(t_pdmh *pdmh)
 
 void	ft_close_window(t_pdmh pdmh)
 {
-	int	i;
-
-	i = 0;
-	while (pdmh.m->map[i])
-		free(pdmh.m->map[i++]);
-	free(pdmh.m->map);
 	mlx_destroy_window(pdmh.p.mlx_ptr, pdmh.p.win_ptr);
+	ft_free_map(pdmh.m->map);
+	free(pdmh.d);
+	free(pdmh.m);
+	free(pdmh.h);
 }

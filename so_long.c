@@ -33,6 +33,5 @@ int	main(int c, char **v)
 	ft_play_game(&pdmh);
 	usleep(250000);
 	ft_close_window(pdmh);
-	ft_free_all(pdmh);
 	return (0);
 }

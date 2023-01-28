@@ -45,21 +45,51 @@ int	ft_collectibles(t_map m, int i, int j)
 		+ ft_collectibles(m, i, j - 1));
 }
 
+int	ft_exit_gate(t_map m, int i, int j)
+{
+	int	gate;
+
+	gate = m.map[i][j] == 'e';
+	if (i < 0 || j < 0 || i > m.size_x || j > m.size_y)
+		return (0);
+	if (m.map[i][j] == '1')
+		return (0);
+	if (m.map[i][j] == '2')
+		return (0);
+	m.map[i][j] = '2';
+	return (gate
+		+ ft_exit_gate(m, i + 1, j)
+		+ ft_exit_gate(m, i - 1, j)
+		+ ft_exit_gate(m, i, j + 1)
+		+ ft_exit_gate(m, i, j - 1));
+}
+
 void	ft_check_path(t_pdmh pdmh)
 {
 	int		items;
 	int		collectibles;
-	char	**map;
+	int		exit_gate;
+	char	**temp;
 
-	map = ft_copy_map(*pdmh.m);
 	items = ft_items(*pdmh.m, pdmh.h);
+	temp = ft_copy_map(*pdmh.m);
+	exit_gate = ft_exit_gate(*pdmh.m, pdmh.h->loc_x, pdmh.h->loc_y);
+	ft_free_map(pdmh.m->map);
+	pdmh.m->map = temp;
+	temp = ft_copy_map(*pdmh.m);
 	collectibles = ft_collectibles(*pdmh.m, pdmh.h->loc_x, pdmh.h->loc_y);
 	ft_free_map(pdmh.m->map);
-	pdmh.m->map = map;
-	if (collectibles - items && pdmh.h->loc_x && pdmh.h->loc_y)
+	pdmh.m->map = temp;
+	if (items - collectibles && pdmh.h->loc_x && pdmh.h->loc_y)
 	{
-		ft_free_map(pdmh.m->map);
+		ft_free_map(temp);
 		ft_printf("Error! There are %d items cannot be collected!\n", items);
+		exit(0);
+	}
+	if (exit_gate != 1 && pdmh.h->loc_x && pdmh.h->loc_y)
+	{
+		ft_free_map(temp);
+		ft_printf("Error! The player(warrior) reach not the exit(queen)!\n");
 		exit(0);
 	}
 }
